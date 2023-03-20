@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FormViewModelExample.Web</title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="container grid-md">
+    <header class="navbar">
+        <section class="navbar-section">
+            <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </section>
+
+        <section class="navbar-section">
+            <a class="btn btn-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+            <a class="btn btn-link" asp-area="" asp-controller="Users" asp-action="Register">Registreer</a>
+        </section>
+    </header>
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - FormViewModelExample.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

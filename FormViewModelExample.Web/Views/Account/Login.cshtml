@@ -1,0 +1,42 @@
+﻿@model AccountLoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+@if (ViewData["message"] != null)
+{
+    <div class="toast toast-error">
+        @ViewData["message"]
+    </div>
+}
+
+<div class="tile">
+    <div class="tile-content">
+        <p class="tile-title">Email: @Model.Email</p>
+        <p class="tile-subtitle">Paswoord: @Model.Password, Herinner me: @Model.RememberMe</p>
+    </div>
+</div>
+
+<form asp-controller="Account" asp-action="Login" method="post">
+    <div class="form-group">
+        <label class="form-label" asp-for="Email" ></label>
+        <input class="form-input" asp-for="Email" required placeholder="bv. janiek@@example.com">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="Password"></label>
+        <input class="form-input" asp-for="Password" id="examplePasswordId">
+    </div>
+
+    <div class="form-group">
+        <label class="form-switch">
+            <input asp-for="RememberMe">
+            <i class="form-icon"></i> Herinner mij ...
+        </label>
+    </div>
+    <button class="btn btn-primary" type="submit">Inloggen</button>
+</form>
+
