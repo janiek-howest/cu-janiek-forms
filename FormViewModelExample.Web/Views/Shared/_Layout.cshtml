@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FormViewModelExample.Web</title>
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="~/lib/spectre.css/spectre.css">
+    <link rel="stylesheet" href="~/lib/spectre.css/spectre-exp.css">
+    <link rel="stylesheet" href="~/lib/spectre.css/spectre-icons.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="container grid-md">
@@ -14,8 +14,11 @@
         <section class="navbar-section">
             <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
             <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
         </section>
-
+        <section class="navbar-center">
+            <img style="width:120px;" src="https://www.gotron.be/media/catalog/product/cache/small_image/256x256/beff4985b56e3afdbeabfc89641a4582/m/c/mct2gb_1_2.jpg" class="navbar-brand">
+        </section>
         <section class="navbar-section">
             <a class="btn btn-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
             <a class="btn btn-link" asp-area="" asp-controller="Users" asp-action="Register">Registreer</a>
@@ -34,7 +37,6 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

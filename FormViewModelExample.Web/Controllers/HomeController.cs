@@ -1,5 +1,7 @@
 ﻿using FormViewModelExample.Web.Models;
+using FormViewModelExample.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 
 namespace FormViewModelExample.Web.Controllers
@@ -17,6 +19,26 @@ namespace FormViewModelExample.Web.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            HomeContactViewModel model = new HomeContactViewModel();
+            model.Departments.Add(new SelectListItem { Text = "Verkoop", Value = "sales" });
+            model.Departments.Add(new SelectListItem { Text = "Technieker", Value = "technician", Selected = true });
+            model.Departments.Add(new SelectListItem { Text = "Directie", Value = "ceo" });
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Contact(HomeContactViewModel model)
+        {
+            model.Departments.Add(new SelectListItem { Text = "Verkoop", Value = "sales" });
+            model.Departments.Add(new SelectListItem { Text = "Technieker", Value = "technician" });
+            model.Departments.Add(new SelectListItem { Text = "Directie", Value = "ceo" });
+            return View(model);
+        }
+
 
         public IActionResult Privacy()
         {

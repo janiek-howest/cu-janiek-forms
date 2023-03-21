@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "spectre.css@0.5.9",
+      "destination": "wwwroot/lib/spectre.css/"
+    }
+  ]
+}
