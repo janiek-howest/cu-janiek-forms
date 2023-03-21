@@ -6,16 +6,22 @@
 <h1>Contact</h1>
 
 <form asp-action="Contact" asp-controller="Home" method="post">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="toast toast-error" asp-validation-summary="ModelOnly">
+        </div>
+    }
     <div class="form-group">
         <label class="form-label" asp-for="Name"></label>
         <input class="form-input" asp-for="Name">
+        <span class="form-input-hint text-error" asp-validation-for="Name"></span>
     </div>
 
-     <div class="form-group">
-        <label class="form-label" >Departement</label>
-        <select class="form-select" asp-for="Department" asp-items="@Model.Departments" >
-
+    <div class="form-group">
+        <label class="form-label">Departement</label>
+        <select class="form-select" asp-for="Department" asp-items="@Model.Departments">
         </select>
+        <span class="form-input-hint text-error" asp-validation-for="Department"></span>
     </div>
 
     <div class="form-group">
@@ -23,9 +29,25 @@
         <textarea class="form-input" asp-for="Question" rows="5">
 
         </textarea>
+        <span class="form-input-hint text-error" asp-validation-for="Question"></span>
     </div>
 
-   
+    @for (int i = 0; i < Model.Terms.Count; i++)
+    {
+        <div class="form-group">
+            <label class="form-switch">
+                <input asp-for="Terms[i].IsSelected">
+                <i class="form-icon"></i> @Model.Terms[i].Description
+            </label>
+            <input type="hidden" asp-for="Terms[i].Description">
+            <input type="hidden" asp-for="Terms[i].Name">
+        </div>
+    }
+
     <button class="btn" type="submit">Verzenden</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 

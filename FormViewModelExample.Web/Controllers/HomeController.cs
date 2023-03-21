@@ -27,16 +27,36 @@ namespace FormViewModelExample.Web.Controllers
             model.Departments.Add(new SelectListItem { Text = "Verkoop", Value = "sales" });
             model.Departments.Add(new SelectListItem { Text = "Technieker", Value = "technician", Selected = true });
             model.Departments.Add(new SelectListItem { Text = "Directie", Value = "ceo" });
+
+
+            model.Terms = new List<TermCheckbox>
+            {
+                new TermCheckbox { Name  ="terms", Description = "Ik ga akkoord met de algemene voorwaarden"},
+                new TermCheckbox { Name  ="privacy-policy", Description = "Ik heb de privacy policy gelezen."},
+            };
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Contact(HomeContactViewModel model)
         {
+            if(model.Department == "technician")
+            {
+                ModelState.AddModelError("Department", "We hebben geen techniekers meer ter beschikking");
+            }
+            if(ModelState.IsValid)
+            {
+                return RedirectToAction("ContactFormSubmitted");
+            }
             model.Departments.Add(new SelectListItem { Text = "Verkoop", Value = "sales" });
             model.Departments.Add(new SelectListItem { Text = "Technieker", Value = "technician" });
             model.Departments.Add(new SelectListItem { Text = "Directie", Value = "ceo" });
             return View(model);
+        }
+
+        public IActionResult ContactFormSubmitted()
+        {
+            return Content("Je hebt succesvol het formulier ingevuld.");
         }
 
 
