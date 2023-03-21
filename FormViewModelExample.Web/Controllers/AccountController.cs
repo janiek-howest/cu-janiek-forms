@@ -17,12 +17,18 @@ namespace FormViewModelExample.Web.Controllers
         [HttpPost]
         public IActionResult Login(AccountLoginViewModel model)
         {
-            if(model.Email != "jules@verne.com" || model.Password != "unsafe123")
+            if (ModelState.IsValid)
             {
-                ViewData["message"] = "Combinatie gebruikersnaam en wachtwoord komen niet overeen.";
-                return View(model);
+                if (model.Email != "jules@verne.com" || model.Password != "unsafe123")
+                {
+                    ModelState.AddModelError("", "Combinatie gebruikersnaam en wachtwoord komen niet overeen.");
+                    return View(model);
+                }
+
+                return RedirectToAction("LoginSuccess");
             }
-            return RedirectToAction("LoginSuccess");
+
+            return View(model);
         }
 
         public IActionResult AdminHomepage()

@@ -5,10 +5,9 @@
 
 <h1>Register</h1>
 
-@if (ViewData["message"] != null)
+@if (!ViewData.ModelState.IsValid)
 {
-    <div class="toast toast-error">
-        @ViewData["message"]
+    <div class="toast toast-error" asp-validation-summary="ModelOnly">
     </div>
 }
 
@@ -16,28 +15,37 @@
     <div class="form-group">
         <label class="form-label" asp-for="FirstName"></label>
         <input class="form-input" asp-for="FirstName" >
+        <span class="form-input-hint text-error" asp-validation-for="FirstName"></span>
     </div>
     
     <div class="form-group">
         <label class="form-label" asp-for="LastName"></label>
         <input class="form-input" asp-for="LastName">
+        <span class="form-input-hint text-error" asp-validation-for="LastName"></span>
     </div>
     
     <div class="form-group">
         <label class="form-label" asp-for="Email"></label>
         <input class="form-input" asp-for="Email" placeholder="bv. janiek@@example.com">
+        <span class="form-input-hint text-error" asp-validation-for="Email"></span>
     </div>
 
     <div class="form-group">
         <label class="form-label" asp-for="Password"></label>
         <input class="form-input" asp-for="Password" >
+        <span class="form-input-hint text-error" asp-validation-for="Password"></span>
     </div>
 
     <div class="form-group">
         <label class="form-label" asp-for="PasswordConfirm"></label>
         <input class="form-input" asp-for="PasswordConfirm">
+        <span class="form-input-hint text-error" asp-validation-for="PasswordConfirm"></span>
     </div>
 
     <button class="btn btn-primary" type="submit">Inloggen</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}
 

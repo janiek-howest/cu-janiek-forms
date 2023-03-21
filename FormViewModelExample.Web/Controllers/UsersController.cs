@@ -16,16 +16,10 @@ namespace FormViewModelExample.Web.Controllers
         [HttpPost]
         public IActionResult Register(UsersRegisterViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if (model.Password != model.PasswordConfirm)
-                {
-                    ViewData["message"] = "Wachtwoorden komen niet overeen.";
-                    return View(model);
-                }
                 return RedirectToAction("RegistrationSuccess");
             }
-            ViewData["message"] = "Er zijn fouten in het model.";
             return View(model);
         }
 

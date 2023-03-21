@@ -18,6 +18,7 @@ namespace FormViewModelExample.Web.ViewModels
         public string Email { get; set; }
 
         [Display(Name = "Paswoord")]
+        [MinLength(8)]
         [DataType(DataType.Password)]
         [Required]
         public string Password { get; set; }
@@ -25,6 +26,7 @@ namespace FormViewModelExample.Web.ViewModels
         [Display(Name = "Herhaal paswoord")]
         [DataType(DataType.Password)]
         [Required]
+        [Compare(nameof(Password), ErrorMessage ="Paswoorden moeten gelijk zijn")]
         public string PasswordConfirm { get; set; }
     }
 }
