@@ -10,13 +10,33 @@ namespace FormViewModelExample.Web.Controllers
         {
             EstaApplyViewModel model = new EstaApplyViewModel();
             model.ArrivalDate = DateTime.Now;
-            model.Countries = new List<SelectListItem>
+            model.Countries = GetCountries();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Process(EstaApplyViewModel model)
+        {
+            if(model.ArrivalDate < DateTime.Today)
+            {
+                ModelState.AddModelError("ArrivalDate", "U dient aan te komen vandaag of in de toekomst.");
+            }
+            if(ModelState.IsValid)
+            {
+                return Content("Thank you");
+            }
+            model.Countries = GetCountries();
+            return View("Apply", model);
+        }
+
+        private List<SelectListItem> GetCountries()
+        {
+            return new List<SelectListItem>
             {
                 new SelectListItem { Text = "Nederland", Value = "NL"},
                 new SelectListItem { Text = "België", Value = "BE"},
             };
-
-            return View(model);
         }
     }
 }
